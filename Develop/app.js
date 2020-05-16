@@ -8,8 +8,7 @@ const Engineer = require("./lib/Engineer");
 
 // ===== START FUNCTION ===== 
 async function start() {
-
-    console.log("testing this section");
+    console.log("testing functionality");
 
     // Set Variable to hold HTML
     let teamHTML = "";
@@ -17,33 +16,23 @@ async function start() {
     // Variable to hold number of team members
     let teamSize;
 
-
     // First Question to ask to set up loop
     await inquirer.prompt({
             type: "number",
-            message: "How many people are in your team?",
-            name: "noOfTeamMem",
-            position: [
-                "Intern",
-                "Engineer",
-                "Manager",
-                "Other employee"
-            ]
+            message: "Please type in the total number of people on your team?",
+            name: "totalNumber"
         })
-
         .then((data) => {
 
             // Number of team members placed in teamSize for scope purposes.
             // 1 is added start from 1 rather than 0 for user understanding.
-            teamSize = data.noOfTeamMem + 1;
+            teamSize = data.totalNumber + 1;
         });
 
     // If Team Size is 0, will end program
     if (teamSize === 0) {
-
-        console.log("I guess there is no one on your team...");
+        console.log("Double check and try again");
         return;
-
     }
 
     // Loop begins to ask questions depending on the size of the team
@@ -61,11 +50,13 @@ async function start() {
                     message: `What is employee (${i})'s name?`,
                     name: "name"
                 },
+
                 {
                     type: "input",
                     message: `What is the employee (${i})'s id?`,
                     name: "id"
                 },
+
                 {
                     type: "input",
                     message: `What is the employee (${i})'s Email?`,
@@ -73,9 +64,9 @@ async function start() {
                 },
                 {
                     type: "list",
-                    message: `what the employee (${i})'s title?`,
+                    message: `What is the employee (${i})'s title?`,
                     name: "title",
-                    choices: ["Engineer", "Intern", "Manager"]
+                    choices: ["Engineer", "Intern", "Manager", "other employee"]
                 }
             ])
             .then((data) => {
@@ -99,10 +90,10 @@ async function start() {
                     }])
                     .then((data) => {
 
-                        // Create a new object with all avaiable user input data
+                        // Create a new object with all avaliable user input data
                         const manager = new Manager(name, id, email, data.officeNo);
 
-                        // Reads and places HTML from manager.html in teamMemever Variable
+                        // Reads and places HTML from manager.html in teamMember Variable
                         teamMember = fs.readFileSync("templates/manager.html");
 
                         // Uses eval() to pass template literals from html files.
