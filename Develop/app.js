@@ -47,7 +47,7 @@ async function start() {
         // Prompts user to answer the basic questions of the employee
         await inquirer.prompt([{
                     type: "input",
-                    message: `What is employee (${i})'s name?`,
+                    message: `What is the employee (${i})'s name?`,
                     name: "name"
                 },
 
@@ -106,7 +106,7 @@ async function start() {
             case "Intern":
                 await inquirer.prompt([{
                         type: "input",
-                        message: "What school is your Intern attending?",
+                        message: "What school does your Intern attend?",
                         name: "school"
                     }])
                     .then((data) => {
@@ -120,7 +120,7 @@ async function start() {
             case "Engineer":
                 await inquirer.prompt([{
                         type: "input",
-                        message: "What is your Engineer's GitHub?",
+                        message: "What is your Engineer's GitHub Username?",
                         name: "github"
                     }])
                     .then((data) => {
