@@ -15,13 +15,12 @@ const render = require("./lib/htmlRenderer");
 async function start() {
     console.log("testing functionality");
 
-    // Set Variable to hold HTML
+    // Set Variable to hold HTML and also members of the team
     let teamHTML = "";
 
-    // Variable to hold number of team members
     let teamSize;
 
-    // First Question to ask to set up loop
+    // Loop setup
     await inquirer.prompt({
             type: "number",
             message: "Please type in the total number of people on your team?",
@@ -29,12 +28,10 @@ async function start() {
         })
         .then((data) => {
 
-            // Number of team members placed in teamSize for scope purposes.
-            // 1 is added start from 1 rather than 0 for user understanding.
+
             teamSize = data.totalNumber + 1;
         });
 
-    // If Team Size is 0, will end program
     if (teamSize === 0) {
         console.log("Double check and try again");
         return;
@@ -101,13 +98,13 @@ async function start() {
                         // Reads and places HTML from manager.html in teamMember Variable
                         teamMember = fs.readFileSync("templates/manager.html");
 
-                        // Uses eval() to pass template literals from html files.
-                        // Adds the string to the team HTML.
+                        // Uses eval() to pass template literals from html files and adds the string.
+
                         teamHTML = teamHTML + "\n" + eval('`' + teamMember + '`');
                     });
                 break;
 
-                //Steps Similar to Manager but for intern
+                //Steps for the intern employee  //
             case "Intern":
                 await inquirer.prompt([{
                         type: "input",
