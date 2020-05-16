@@ -1,12 +1,17 @@
-// ===== Node Packages =====
+// ----------- Node Packages -----------//
+const path = require("path");
 const inquirer = require("inquirer");
 const fs = require("fs");
 
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
+const OUTPUT_DIR = path.resolve(__dirname, "output")
+const render = require("./lib/htmlRenderer");
 
-// ===== START FUNCTION ===== 
+
+// ------------- START FUNCTION ---------//
+
 async function start() {
     console.log("testing functionality");
 
@@ -130,9 +135,9 @@ async function start() {
                     });
                 break;
 
-        } // End of Switch Case
+        }
 
-    } // End of For loop
+    }
 
     // Reads main.html and places html in a variable
     const mainHTML = fs.readFileSync("templates/main.html");
